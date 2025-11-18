@@ -7,13 +7,11 @@ document.addEventListener('DOMContentLoaded', function() {
     const navMenu = document.getElementById('nav-menu');
     const header = document.getElementById('header');
     
-    // Abrir/fechar menu mobile
     if (menuToggle && navMenu) {
         menuToggle.addEventListener('click', () => {
             navMenu.classList.toggle('active');
         });
 
-        // Fechar menu ao clicar em um link (em mobile)
         const navLinks = document.querySelectorAll('.nav-link');
         navLinks.forEach(link => {
             link.addEventListener('click', () => {
@@ -41,6 +39,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // =======================================================
     // 2. INICIALIZAÇÃO DO SWIPER JS (Carrossel Definitivo)
+    // Se você não está usando Swiper, remova este bloco.
     // =======================================================
     if (typeof Swiper !== 'undefined') {
         const swiper = new Swiper(".mySwiper", {
@@ -48,23 +47,17 @@ document.addEventListener('DOMContentLoaded', function() {
             centeredSlides: true,
             
             autoplay: {
-                delay: 6000, // 6 segundos
+                delay: 6000, 
                 disableOnInteraction: false, 
             },
-
-            // Navegação (Botões)
             navigation: {
                 nextEl: ".swiper-button-next",
                 prevEl: ".swiper-button-prev",
             },
-
-            // Paginação (Pontos/Indicadores)
             pagination: {
                 el: ".swiper-pagination",
                 clickable: true,
             },
-
-            // Configuração Responsiva (1 slide por vez)
             slidesPerView: 1, 
             spaceBetween: 10,
         });
