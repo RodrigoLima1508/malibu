@@ -1,4 +1,3 @@
-
 /* Definições de Cores (Variáveis CSS) */
 :root {
     --color-primary: #ff0000; /* Vermelho Malibu */
@@ -48,36 +47,42 @@ h2 {
     color: var(--color-primary);
 }
 
-/* HEADER */
+/* ---------------------------------------------------------------- */
+/* HEADER: Texto à Esquerda, Menu à Direita */
+/* ---------------------------------------------------------------- */
 #header {
-    padding: 20px 0; /* Padding do header */
-    /* ... */
+    background-color: rgba(0, 0, 0, 0.95);
+    padding: 20px 0; 
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 2000;
+    transition: transform 0.3s ease-in-out;
+}
+.header-content {
+    display: flex;
+    justify-content: space-between; /* Coloca logo/texto e Menu nas pontas */
+    align-items: center;
+}
+#header.hide {
+    transform: translateY(-100%);
 }
 
-/* Estilos Específicos da Nova Logo no Header */
-.header-logo-img {
-    height: 50px; /* Altura da logo no desktop */
-    width: auto;
-    transition: height 0.3s;
+/* TEXTO "Malibu" no Cabeçalho (Substitui a imagem no topo) */
+.logo-texto {
+    font-size: 1.5rem;
+    color: var(--color-primary); 
+    text-decoration: none;
+    font-weight: bold;
 }
 
-/* RESPONSIVIDADE (Mobile) */
-@media (max-width: 768px) {
-    #header {
-        padding: 15px 0; /* Padding menor no mobile */
-    }
-    
-    .header-logo-img {
-        height: 40px; /* Altura da logo no mobile */
-    }
-    /* ... */
-}
-
-/* Navegação e Menu Toggle */
+/* NAVEGAÇÃO / MENU */
 .nav-menu ul {
     list-style: none;
     display: flex;
-    gap: 30px;
+    gap: 30px; /* DIVISÃO ENTRE LINKS */
+    padding: 0;
+    margin: 0;
 }
 .nav-link {
     color: var(--color-light);
@@ -96,6 +101,10 @@ h2 {
     font-size: 1.5rem;
     cursor: pointer;
 }
+
+/* ---------------------------------------------------------------- */
+/* SEÇÕES PRINCIPAIS */
+/* ---------------------------------------------------------------- */
 
 /* HERO SECTION */
 #hero {
@@ -122,8 +131,9 @@ h2 {
     padding: 30px;
     border-radius: 10px;
 }
+/* Estilo da logo centralizada na seção Hero (CORREÇÃO DE TAMANHO FINAL) */
 .logo-centralizada img {
-    max-width: 250px;
+    max-width: 350px !important; /* FORÇADO PARA O TAMANHO MAIOR DESEJADO */
     height: auto;
     margin-bottom: 20px;
 }
@@ -152,7 +162,7 @@ h2 {
     transform: translateY(-2px);
 }
 
-/* SERVIÇOS SECTION (Usando Flexbox para Mobile-First) */
+/* SERVIÇOS SECTION */
 .servicos-container {
     display: flex;
     justify-content: center;
@@ -164,7 +174,7 @@ h2 {
     background-color: #222;
     padding: 30px;
     border-radius: 10px;
-    width: 300px; /* Largura fixa para cards */
+    width: 300px; 
     transition: transform 0.3s, box-shadow 0.3s;
 }
 .servico-card:hover {
@@ -176,41 +186,29 @@ h2 {
     color: var(--color-primary);
     margin-bottom: 15px;
 }
-.servico-card h3 {
-    font-size: 1.4rem;
-    margin-bottom: 10px;
-}
 
-/* CARROSSEL DE REFERÊNCIAS */
-#referencias {
-    background-color: var(--color-secondary);
+/* CARROSSEL SWIPER */
+.mySwiper {
+    width: 100%;
+    max-width: 800px; 
+    height: 450px; 
+    margin: 30px auto;
 }
-.carrossel-container {
-    position: relative;
-    width: 90%;
-    max-width: 800px;
-    margin: 0 auto 50px auto;
-    overflow: hidden; 
+.swiper-button-next, .swiper-button-prev {
+    color: var(--color-primary) !important; 
 }
-.carrossel {
-    display: flex;
-    /* Velocidade de transição mais lenta (1.5s) */
-    transition: transform 1.5s ease-in-out; 
-    /* 8 itens * 100% */
-    width: 800%; 
+.swiper-pagination-bullet-active {
+    background: var(--color-primary) !important;
 }
 .carrossel-item {
-    flex: 0 0 100%; 
-    min-width: 100%;
-    box-sizing: border-box;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
-    flex-direction: column;
 }
 .carrossel-item img {
     width: 100%;
-    max-height: 400px;
+    max-height: 380px; 
     object-fit: contain;
     border-radius: 10px;
 }
@@ -219,29 +217,7 @@ h2 {
     font-size: 1.1rem;
     color: #ccc;
 }
-.carrossel-btn {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    background-color: rgba(0, 0, 0, 0.7);
-    border: none;
-    color: var(--color-light);
-    font-size: 2rem;
-    cursor: pointer;
-    padding: 10px;
-    border-radius: 5px;
-    z-index: 100;
-    transition: background-color 0.3s;
-}
-.carrossel-btn:hover {
-    background-color: var(--color-primary);
-}
-.carrossel-btn.anterior {
-    left: 10px;
-}
-.carrossel-btn.proximo {
-    right: 10px;
-}
+
 
 /* SEÇÃO CONTATO */
 .contato-grid {
@@ -253,10 +229,6 @@ h2 {
 .contato-info h2 {
     text-align: left;
     margin-bottom: 20px;
-}
-.contato-info p {
-    margin-bottom: 10px;
-    font-size: 1.1rem;
 }
 .contato-info i {
     color: var(--color-primary);
@@ -280,23 +252,11 @@ h2 {
     flex-wrap: wrap;
     margin-top: 25px;
 }
-.social-button {
-    display: inline-flex;
-    align-items: center;
-    font-size: 1rem;
-}
-.btn-whatsapp {
-    background-color: #25D366;
-}
-.btn-instagram {
-    background-color: #E1306C;
-}
-.btn-tiktok {
-    background-color: #000;
-}
+.btn-whatsapp { background-color: #25D366; }
+.btn-instagram { background-color: #E1306C; }
+.btn-tiktok { background-color: #000; }
 
-
-/* VOLTAR AO TOPO */
+/* VOLTAR AO TOPO E RODAPÉ */
 #voltarTopo {
     display: none;
     position: fixed;
@@ -304,29 +264,18 @@ h2 {
     right: 20px;
     background-color: var(--color-primary);
     color: var(--color-light);
-    border: none;
     border-radius: 50%;
     padding: 15px;
     font-size: 1.5rem;
     cursor: pointer;
     z-index: 1500;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
-    transition: background-color 0.3s;
 }
-#voltarTopo:hover {
-    background-color: #cc0000;
-}
-
-/* RODAPÉ */
 footer {
     text-align: center;
     padding: 20px 0;
     border-top: 1px solid #333;
     font-size: 0.9rem;
     background-color: var(--color-dark);
-}
-.social-icons {
-    margin-top: 10px;
 }
 .social-icons a {
     color: var(--color-light);
@@ -339,18 +288,22 @@ footer {
 }
 
 
+/* ---------------------------------------------------------------- */
 /* RESPONSIVIDADE */
+/* ---------------------------------------------------------------- */
+
 @media (max-width: 768px) {
     /* Menu Hamburger */
     .nav-menu {
         display: none;
         position: absolute;
-        top: 65px;
+        top: 70px; 
         left: 0;
         width: 100%;
         background-color: rgba(0, 0, 0, 0.95);
         padding: 10px 0;
         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+        z-index: 10;
     }
     .nav-menu ul {
         flex-direction: column;
@@ -358,44 +311,26 @@ footer {
         padding: 10px 20px;
     }
     .nav-menu ul li {
-        text-align: left;
         border-bottom: 1px solid #333;
-    }
-    .nav-menu ul li:last-child {
-        border-bottom: none;
     }
     .nav-menu.active {
         display: flex;
     }
     .menu-toggle {
         display: block;
+        margin-left: 20px; 
     }
     
-    /* Seções */
-    section {
-        padding: 40px 10px;
-    }
-    #hero h1 {
-        font-size: 2.2rem;
+    /* Logo centralizada no Mobile */
+    .logo-centralizada img {
+        max-width: 250px !important; /* Mantém o tamanho ajustado para a tela pequena */
     }
 
-    /* Serviços (Empilha em mobile) */
-    .servico-card {
-        width: 100%;
-        max-width: 400px;
-    }
-
-    /* Contato (Empilha mapa e info) */
+    /* Seções e Grid */
     .contato-grid {
         grid-template-columns: 1fr;
     }
-    .contato-info {
-        text-align: center;
-    }
-    .contato-info h2 {
-        text-align: center;
-    }
-    .contato-mapa iframe {
-        height: 250px;
+    .servico-card {
+        width: 100%;
     }
 }
